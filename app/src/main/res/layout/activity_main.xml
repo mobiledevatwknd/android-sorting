@@ -15,15 +15,22 @@
                 android:layout_height="150dp"
                 android:src="@drawable/background"
                 android:background="@color/red_background"/>
-            <GridView
-                android:id="@+id/idGVMenu"
+<!--            <GridView-->
+<!--                android:id="@+id/idGVMenu"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:horizontalSpacing="10dp"-->
+<!--                android:verticalSpacing="20dp"-->
+<!--                android:layout_marginVertical="20dp"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:numColumns="4"-->
+<!--                />-->
+
+            <fragment
+                android:id="@+id/container_custom_view"
+                android:name="com.example.sample.CustomView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:horizontalSpacing="10dp"
-                android:verticalSpacing="20dp"
-                android:layout_marginVertical="20dp"
-                android:layout_marginHorizontal="20dp"
-                android:numColumns="4"
                 />
 
             <LinearLayout
