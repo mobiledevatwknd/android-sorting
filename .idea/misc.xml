@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3528945922851562" />
         <entry key="app/src/main/res/layout/card_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_custom_view.xml" value="0.24954710144927536" />
+        <entry key="app/src/main/res/layout/recycler_card.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    GridView menuGV;
 
 
     @Override
@@ -23,18 +22,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Bundle bundle = new Bundle();
         bundle.putInt("some_int", 0);
-        CustomView menuGrid = new CustomView();
+        CustomView recyclerView = new CustomView();
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
 //                .add(R.id.container_custom_view, CustomView.class, bundle)
-                .add(menuGrid,"")
+                .add(recyclerView,"")
                 .commit();
 
-//        menuGrid = (CustomView) getSupportFragmentManager().findFragmentById(R.id.container_custom_view);
+//        recyclerView = (CustomView) getSupportFragmentManager().findFragmentById(R.id.container_custom_view);
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                menuGrid.customOrder(new MenuInterface() {
+                recyclerView.customOrder(new MenuInterface() {
                     @Override
                     public ArrayList<MenuModel> customSort(ArrayList<MenuModel> menuModels) {
                         ArrayList<MenuModel> newX = new ArrayList<>();

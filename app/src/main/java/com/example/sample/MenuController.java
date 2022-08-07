@@ -26,7 +26,7 @@ public class MenuController extends AppCompatActivity {
     }
 
     public void MenuConstructor(){
-        menuGV = (GridView) activity.findViewById(R.id.idGVMenu);
+        menuGV = (GridView) activity.findViewById(R.id.my_recycler_view);
      MenuGVAdapter adapter = new MenuGVAdapter(context, Array);
     menuGV.setAdapter(adapter);
     }

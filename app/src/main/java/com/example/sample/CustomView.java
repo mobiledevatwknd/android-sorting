@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +25,9 @@ import java.util.Comparator;
  */
 public class CustomView extends Fragment {
     ArrayList<MenuModel> menuModels;
-    GridView menuGV;
-    MenuGVAdapter adapter;
+//    GridView menuGV;
+    RecyclerAdapter adapter;
+    RecyclerView recyclerView;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -76,10 +80,15 @@ public class CustomView extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         menuModels = createMenuModels();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
 //        sortAsc(menuModels);
-        menuGV = (GridView) view.findViewById(R.id.idGVMenu);
-        adapter = new MenuGVAdapter(getContext(), menuModels);
-        menuGV.setAdapter(adapter);
+//        menuGV = (GridView) view.findViewById(R.id.idGVMenu);
+        recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        adapter = new RecyclerAdapter(getContext(),menuModels);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+//        adapter = new MenuGVAdapter(getContext(), menuModels);
+//        menuGV.setAdapter(adapter);
     }
 
     public ArrayList<MenuModel> createMenuModels(){
@@ -124,9 +133,17 @@ public class CustomView extends Fragment {
 //    };
     public void customOrder(MenuInterface menuInterface){
         ArrayList<MenuModel> newMenuModels = menuInterface.customSort(menuModels);
-//        MenuGVAdapter adapter = new MenuGVAdapter(getContext(), newMenuModels);
-    adapter.clear();
-    adapter.notifyDataSetChanged();
-//        menuGV.setAdapter(adapter);
+//        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), newMenuModels);
+        adapter = new RecyclerAdapter(getContext(),newMenuModels);
+//        adapter.notifyDataSetChanged();
+        Log.d("rcview", String.valueOf(recyclerView));
+//        recyclerView.setAdapter(adapter);
+//        recyclerView.invalidate();
+//        recyclerView.setAdapter(new RecyclerViewAdapter(newList));
+//        recyclerView.invalidate();
+//        Log.d("tag", String.valueOf(newMenuModels));
+//    adapter.clear();
+//    adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
     }
 }
