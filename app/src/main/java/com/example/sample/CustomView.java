@@ -81,14 +81,10 @@ public class CustomView extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         menuModels = createMenuModels();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
-//        sortAsc(menuModels);
-//        menuGV = (GridView) view.findViewById(R.id.idGVMenu);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         adapter = new RecyclerAdapter(getContext(),menuModels);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
-//        adapter = new MenuGVAdapter(getContext(), menuModels);
-//        menuGV.setAdapter(adapter);
     }
 
     public ArrayList<MenuModel> createMenuModels(){
@@ -103,21 +99,25 @@ public class CustomView extends Fragment {
         return menuModelArrayList;
     }
 
-    public void sortAsc(ArrayList<MenuModel> menuModels){
-        Collections.sort(menuModels, new Comparator<MenuModel>() {
+    public void sortAsc(){
+        ArrayList<MenuModel> items = adapter.getItems();
+        Collections.sort(items, new Comparator<MenuModel>() {
             @Override
             public int compare(MenuModel obj1, MenuModel obj2) {
                 return obj1.getMenu_rank() - obj2.getMenu_rank();
             }
         });
+        adapter.setItems(items);
     }
-    public void sortDesc(ArrayList<MenuModel> menuModels){
-        Collections.sort(menuModels, new Comparator<MenuModel>() {
+    public void sortDesc(){
+        ArrayList<MenuModel> items = adapter.getItems();
+        Collections.sort(items, new Comparator<MenuModel>() {
             @Override
             public int compare(MenuModel obj1, MenuModel obj2) {
                 return obj2.getMenu_rank() - obj1.getMenu_rank();
             }
         });
+        adapter.setItems(items);
     }
     public void sortAscName(ArrayList<MenuModel> menuModels){
         Collections.sort(menuModels, new Comparator<MenuModel>() {
@@ -128,22 +128,8 @@ public class CustomView extends Fragment {
         });
     }
 
-//    public void customMethod(ArrayList<MenuModel> m){
-//        menuModels = m;
-//    };
     public void customOrder(MenuInterface menuInterface){
         ArrayList<MenuModel> newMenuModels = menuInterface.customSort(menuModels);
-//        RecyclerAdapter adapter = new RecyclerAdapter(getContext(), newMenuModels);
-        adapter = new RecyclerAdapter(getContext(),newMenuModels);
-//        adapter.notifyDataSetChanged();
-        Log.d("rcview", String.valueOf(recyclerView));
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.invalidate();
-//        recyclerView.setAdapter(new RecyclerViewAdapter(newList));
-//        recyclerView.invalidate();
-//        Log.d("tag", String.valueOf(newMenuModels));
-//    adapter.clear();
-//    adapter.notifyDataSetChanged();
-//        adapter.notifyDataSetChanged();
+        adapter.setItems(newMenuModels);
     }
 }
